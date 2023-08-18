@@ -1,0 +1,39 @@
+<div class="loginWrapper flex flex-row container h-screen w-full items-center justify-center mx-auto">
+  <div class="leftSide w-8/12 bg-[#1B3764] h-[600px] rounded-md p-8 text-white font-sans flex flex-col items-center">
+    <!--  -->
+    <div class="logo text-3xl font-kontum self-start">
+      MYBOOK
+
+    </div>
+    <!-- moon -->
+    <div class="h-80 w-80 ">
+      <div class="bg-moon w-full h-full bg-cover"></div>
+    </div>
+    <!-- welcome -->
+    <div class="welcome flex flex-col items-center justify-center">
+      <h1 class="text-2xl text-center">Welcome MYBOOk</h1>
+      <h3>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Obcaecati, voluptate.</h3>
+    </div>
+  </div>
+
+  <!--  -->
+  <form [formGroup]="authenticatoinForm" class="rightSide w-4/12  flex flex-col items-center justify-center gap-4 px-4">
+    <div class="Welcome flex flex-col items-center justify-center gap-4 ">
+      <img src="../../../assets/wlcome-book.svg" alt="">
+      <h1 class="welcome text-5xl font-bold">WELCOME</h1>
+    </div>
+
+    <div class="eamilPart w-full">
+      <label for="email" class="font-bold font-kontum">Email</label>
+      <input formControlName="email" placeholder="Email..." class="w-full border px-2 py-2 outline-none rounded-md"
+        type="text" id="email" name="email">
+    </div>
+    <div class="password w-full">
+      <label for="password" class="font-bold font-kontum">Password</label>
+      <input formControlName="password" placeholder="Password..."
+        class="w-full border px-2 py-2 outline-none rounded-md" type="text" id="password" name="password">
+    </div>
+
+    <button (click)="login()" class="bg-blue-700 text-white px-2 py-2 font-bold rounded-md self-stretch">Login</button>
+  </form>
+</div>

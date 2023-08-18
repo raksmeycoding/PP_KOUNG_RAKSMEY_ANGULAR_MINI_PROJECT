@@ -1,0 +1,51 @@
+<div *ngIf="movies" class="flex flex-col items-center justify-center py-2 bg-slate-50">
+  <div class="title text-4xl font-rochester mb-4 mt-4">This new story</div>
+
+  <div class="flex flex-row flex-wrap gap-2 items-center justify-center">
+    <ng-container *ngFor="let movie of movies | searchCategory:searchCategoryVar">
+      <app-bookcard (deleteEvent)="deleteCard($event)" (popEvent)="popUpCard($event)" [movie]="movie"></app-bookcard>
+    </ng-container>
+  </div>
+</div>
+
+
+<div *ngIf="isCardPopup" class="fixed -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 z-50  ">
+
+
+  <form [formGroup]="popUpFormGrop"
+    class="cardPopUp bg-white shadow-2xl w-[500px] h-[420px]  rounded-xl p-2 flex gap-2 flex-col border-purple-800">
+
+    <!-- remove popup button -->
+    <button title="removePopUp" (click)="removePopUp()">
+      <svg class="top-0 right-0 absolute fill-red-600 h-[1.5rem] m-2" xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 384 512">
+        <path
+          d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z" />
+      </svg>
+    </button>
+
+    <!-- title section -->
+    <div class="titleSection flex flex-col">
+      <label for="movieTitle" class=" font-bold text-xl font-kontum tracking">Title</label>
+      <input formControlName="title" class="w-full border py-1 outline-none px-1 rounded-md" type="text"
+        title="movieTitle" id="movieTitle" [value]="popUpMovie?.title">
+    </div>
+    <!-- author section -->
+    <div class="author flex flex-col">
+      <label for="author" class="font-bold text-xl font-kontum tracking-widest">Author</label>
+      <input formControlName="author" class="w-full border py-1 outline-none px-1 rounded-md" type="text" title="author"
+        id="author" [value]="popUpMovie?.author">
+    </div>
+    <!-- Description section -->
+    <div class="description w-full h-full flex flex-col">
+      <label for="description" class="font-bold text-xl font-kontum tracking-widest">Description</label>
+      <textarea formControlName="description"
+        class="outline-none rounded-xl px-1 border  overflow-hidden overflow-y-scroll  " type="text" title="description"
+        rows="7" id="description">{{popUpMovie?.description}}</textarea>
+    </div>
+
+    <!-- update btn -->
+    <button (click)="updateMovieCard()"
+      class="updateBtn px-4 py-2 rounded-lg bg-blue-800 text-white font-bold font-sans">Update</button>
+  </form>
+</div>
