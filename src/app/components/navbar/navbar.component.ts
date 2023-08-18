@@ -8,10 +8,21 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent {
 
-  userlogin: boolean = true;
+  userlogin: boolean = false;
   stroageUserLogin: any
   constructor(private _router: Router) {
 
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    const userloginStroage = localStorage.getItem("userLogin")
+    if (userloginStroage !== null) {
+      this.userlogin = true
+    } else {
+      this.userlogin = false
+    }
   }
 
 
@@ -23,11 +34,12 @@ export class NavbarComponent {
     this._router.navigate(['/book/addBook']);
   }
 
-  ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
-
+  logOut() {
+    localStorage.removeItem("userLogin")
+    this._router.navigate(['/']);
   }
+
+
 
   ngDoCheck(): void {
     //Called every time that the input properties of a component or a directive are checked. Use it to extend change detection by performing a custom check.

@@ -12,9 +12,12 @@
     </div>
 
     <!-- login btn -->
-    <button (click)="goToLogin()"
+    <button *ngIf="!userlogin" (click)="goToLogin()"
       class="font-rochester justify-self-end place-self-start px-8 py-1 bg-white text-[#8F6C28] font-bold text-center text-2xl rounded-3xl w-fit">Log
       in</button>
+    <button *ngIf="userlogin" (click)="logOut()"
+      class="font-rochester justify-self-end place-self-start px-8 py-1 bg-white text-[#8F6C28] font-bold text-center text-2xl rounded-3xl w-fit">Log
+      out</button>
 
 
     <!-- banner -->
